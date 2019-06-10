@@ -1,8 +1,19 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <b-nav>
+        <b-nav-item active><router-link to="/">Home</router-link></b-nav-item>
+        <b-nav-item-dropdown
+          id="my-nav-dropdown"
+          text="Games"
+          toggle-class="nav-link-custom"
+          right
+        >
+          <b-dropdown-item><router-link to="/games/bricks">Bricks</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/games/rpg">Rpg</router-link></b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-nav-item><router-link to="/about">About</router-link></b-nav-item>
+      </b-nav>
     </div>
     <router-view/>
   </div>
