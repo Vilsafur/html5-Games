@@ -1,13 +1,17 @@
 <template>
   <div class="bricks">
     <h1>Labyrinth Game</h1>
-    <div>
-      <b-form-select v-model="labSelect" :options="labyrinthe" size="sm" @change="updateMap">
-      </b-form-select>
-    </div>
-    <div>
-        <canvas id="RpgCanvas">Votre navigateur ne supporte pas HTML5, veuillez le mettre à jour pour jouer.</canvas>
-    </div>
+    <b-container fluid>
+      <b-row>
+        <b-col md="3" xl="2" col="12">
+          <b-form-select v-model="labSelect" :options="labyrinthe" size="sm" @change="updateMap">
+          </b-form-select>
+        </b-col>
+        <b-col md="9" xl="8" col="12" pb-md-3 pl-md-5>
+          <canvas id="RpgCanvas">Votre navigateur ne supporte pas HTML5, veuillez le mettre à jour pour jouer.</canvas>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
