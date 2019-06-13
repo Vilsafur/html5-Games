@@ -48,8 +48,8 @@ export default class Rpg extends Vue {
           name: 'greenbaragon_good.png',
           direction: Direction.RIGHT,
         },
-        13,
-        10,
+        30,
+        20,
       ).then(() => {
         this.canvas.width = this.scene.getPxWidth();
         this.canvas.height = this.scene.getPxHeight();
