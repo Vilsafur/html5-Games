@@ -23,8 +23,8 @@ export default new Router({
           component: () => import(/* webpackChunkName: "games" */ './views/Games/Bricks.vue'),
         },
         {
-          path: 'rpg',
-          component: () => import(/* webpackChunkName: "games" */ './views/Games/Rpg.vue'),
+          path: 'labyrinth',
+          component: () => import(/* webpackChunkName: "games" */ './views/Games/Labyrinth.vue'),
         },
       ],
     },

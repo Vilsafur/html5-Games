@@ -1,6 +1,6 @@
 <template>
   <div class="bricks">
-    <h1>Rpg Game</h1>
+    <h1>Labyrinth Game</h1>
     <div>
       <b-form-select v-model="labSelect" :options="labyrinthe" size="sm" @change="updateMap">
       </b-form-select>
@@ -12,14 +12,13 @@
 </template>
 
 <script lang="ts">
-/// <reference types="./Rpg" />
 import { Component, Vue } from 'vue-property-decorator';
 import Scene from '../../utils/Scene';
 import { Direction } from '../../utils/Direction';
 import axios from 'axios';
 
 @Component
-export default class Rpg extends Vue {
+export default class Labyrinth extends Vue {
   private scene: Scene;
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
