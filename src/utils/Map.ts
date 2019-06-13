@@ -25,12 +25,12 @@ export default class Map {
     return this.start;
   }
 
-  public getWidth() {
-    return this.ground[0].length;
+  public getWidth(): number {
+    return this.ground !== undefined ? this.ground[0].length : 0;
   }
 
-  public getHeight() {
-    return this.ground.length;
+  public getHeight(): number {
+    return this.ground !== undefined ? this.ground.length : 0;
   }
 
   public draw(context: CanvasRenderingContext2D, camCoord: Coord, width: number, height: number) {

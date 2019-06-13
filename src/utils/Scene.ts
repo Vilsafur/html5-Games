@@ -67,6 +67,9 @@ export default class Scene {
   }
 
   public draw() {
+    if (this.map.getWidth() === 0) {
+      return;
+    }
     this.centerScene();
     this.context.clearRect(0, 0, this.getPxWidth(), this.getPxHeight());
     this.map.draw(this.context, this.coord, this.width, this.height);

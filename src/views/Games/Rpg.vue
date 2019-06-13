@@ -16,20 +16,21 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Scene from '../../utils/Scene';
 import { Direction } from '../../utils/Direction';
+import axios from 'axios';
 
 @Component
 export default class Rpg extends Vue {
   private scene: Scene;
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private labyrinthe = {
-    premiere : require ('../../assets/maps/premiere.json'),
-    deuxieme : require ('../../assets/maps/seconde.json'),
-    troisieme : require ('../../assets/maps/troisieme.json'),
-    quatrieme : require ('../../assets/maps/quatrieme.json'),
-    cinquieme : require ('../../assets/maps/cinquieme.json'),
-  };
-  private labSelect: MapData = this.labyrinthe['premiere'];
+  private labyrinthe = [
+    'premiere',
+    'seconde',
+    'troisieme',
+    'quatrieme',
+    'cinquieme',
+  ];
+  private labSelect: string = 'seconde';
 
   public mounted() {
     this.initLabirynthe();
@@ -39,28 +40,32 @@ export default class Rpg extends Vue {
     this.canvas = document.getElementById('RpgCanvas') as HTMLCanvasElement;
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
     this.scene = new Scene();
-    this.scene.init(
-      this.ctx,
-      this.labSelect,
-      {
-        name: 'greenbaragon_good.png',
-        direction: Direction.RIGHT,
-      },
-      13,
-      10,
-    ).then(() => {
-      this.canvas.width = this.scene.getPxWidth();
-      this.canvas.height = this.scene.getPxHeight();
-      this.draw();
+    axios.get('/maps/' + this.labSelect + '.json').then((response) => {
+      this.scene.init(
+        this.ctx,
+        response.data,
+        {
+          name: 'greenbaragon_good.png',
+          direction: Direction.RIGHT,
+        },
+        13,
+        10,
+      ).then(() => {
+        this.canvas.width = this.scene.getPxWidth();
+        this.canvas.height = this.scene.getPxHeight();
+        this.draw();
+      });
     });
   }
 
   private updateMap() {
-    this.scene.updateMap(
-      this.labSelect,
-    ).then(() => {
-      this.canvas.width = this.scene.getPxWidth();
-      this.canvas.height = this.scene.getPxHeight();
+    axios.get('/maps/' + this.labSelect + '.json').then((response) => {
+      this.scene.updateMap(
+        response.data,
+      ).then(() => {
+        this.canvas.width = this.scene.getPxWidth();
+        this.canvas.height = this.scene.getPxHeight();
+      });
     });
   }
 
