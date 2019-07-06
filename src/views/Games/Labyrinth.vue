@@ -32,6 +32,7 @@ export default class Labyrinth extends Vue {
     'troisieme',
     'quatrieme',
     'cinquieme',
+    'six',
   ];
   private labSelect: string = 'seconde';
 
